@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <title>Home</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" type="text/css" href="../styles/main.css" />
+    </head>
+
+    <body>
+        <header>
+            <h1>Home Page</h1>
+            {{username}}
+        </header>
+
+        <main>
+            <form action="/add-store" method="POST">
+                <fieldset>
+                    <legend class="">Add Store</legend>
+
+                    <label>Store Name:</label>
+                    <input class="" type="text" name="name" placeholder="Store Name" /><br />
+
+                    <label>Address</label><br />
+
+                    <label class="indent-label">Street:</label>
+                    <input class="" type="text" name="street" placeholder="Street" /><br />
+
+                    <label class="indent-label">City:</label>
+                    <input class="" type="text" name="city" placeholder="City" /><br />
+
+                    <label class="indent-label">State:</label>
+                    <input class="" type="text" name="state" placeholder="State" /><br />
+
+
+                    <input type="submit" value="Add Store" />
+                </fieldset>
+            </form>
+            
+            <h2>All Stores</h2>
+            <section>
+                {{#stores}}
+                    <div>
+                        <input type="hidden" name="name" value="{{name}}" />
+                        <div>{{name}}</div>
+
+                        <input type="hidden" name="street" value="{{street}}" />
+                        <div>{{street}}</div>
+
+                        <input type="hidden" name="city" value="{{city}}" />
+                        <div>{{city}}</div>
+
+                        <input type="hidden" name="state" value="{{state}}" />
+                        <div>{{state}}</div>
+
+                        <a href="/modify-store/{{id}}">Modify</a>
+
+                        <form action="/remove-store" method="POST">
+                            <input type="hidden" name="name" value="{{name}}" />
+                            
+                            <input type="submit" value="Remove" />
+                        </form>
+                    </div>
+                {{/stores}}
+            </section>
+        </main>
+
+        <footer>
+        </footer>
+    </body>
+
+    <script src=""></script>
+</html>

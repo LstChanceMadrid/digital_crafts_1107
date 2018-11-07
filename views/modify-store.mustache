@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <title>Home</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" type="text/css" href="../styles/main.css" />
+    </head>
+
+    <body>
+        <header>
+            <h1>Modify Page</h1>
+            {{username}}
+        </header>
+
+        <main>
+            <form action="/update-store/{{store.id}}" method="POST">
+                <fieldset>
+                
+                    <legend class="">Update Store</legend>
+
+                    <label>Store Name:</label>
+                    <input class="" type="text" name="name" value="{{store.name}}" /><br />
+
+                    <label>Address</label><br />
+
+                    <label class="indent-label">Street:</label>
+                    <input class="" type="text" name="street" value="{{store.street}}" /><br />
+
+                    <label class="indent-label">City:</label>
+                    <input class="" type="text" name="city" value="{{store.city}}" /><br />
+
+                    <label class="indent-label">State:</label>
+                    <input class="" type="text" name="state" value="{{store.state}}" /><br />
+
+
+                    <input type="submit" value="Update" />
+                </fieldset>
+            </form>
+        </main>
+
+        <footer>
+        </footer>
+    </body>
+
+    <script src=""></script>
+</html>
