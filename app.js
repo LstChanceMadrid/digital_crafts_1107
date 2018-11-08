@@ -18,10 +18,60 @@ app.engine('mustache', mustacheExpress());
 app.set('views', "./views"); 
 app.set('view engine', 'mustache');
 
+app.get('/', (req, res) => {
+    res.render('index');
+});
+
+app.post('/register', (req, res) => {
+
+    let username = req.body.username;
+    let password = req.body.password;
+
+    let user = models.user.build({
+        username : username,
+        password : password
+    });
+
+
+    user.save().then(newUser => {
+        res.redirect('/home');
+    }).catch(error => {
+        console.log(error);
+    });
+});
+
+app.post('/log-in', (req, res) => {
+
+    let username = req.body.username;
+    let password = req.body.password;
+
+    models.user.findOne({
+        where : {
+            username : username,
+            password : password
+        }
+    }).then(user => {
+        if (user) {
+            res.redirect('/home');
+        } else {
+            res.send('Those credentials do not exist');
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
+
 app.get('/home', (req, res) => {
 
     models.store.findAll().then(stores => {
-        res.render('home', {stores:stores});
+        res.render('home', {stores:stores, });
     }).catch(error => {
         console.log('searching error', error);
     });
